@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "photoblog": {
+    "adasa-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
