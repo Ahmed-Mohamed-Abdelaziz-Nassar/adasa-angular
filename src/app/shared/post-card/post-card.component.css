@@ -1,0 +1,16 @@
+.post-list-item {
+  background-color: var(--secondary-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.post-list-item:hover {
+  background-color: #222;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: var(--light-text);
+}
+.card-text {
+  color: #b0b0b0;
+}

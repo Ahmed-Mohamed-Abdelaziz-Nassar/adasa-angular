@@ -1,0 +1,218 @@
+@if (post) {
+<article class="post-page" style="margin-top: 50px;">
+
+  <div class="post-hero position-relative">
+
+    <img [src]="post.image" [alt]="post.title" class="hero-img w-100 h-100" />
+
+    <div class="hero-gradient-top"></div>
+    <div class="hero-gradient-side"></div>
+
+    <div class="hero-content container">
+      <nav
+        class="breadcrumb-nav d-inline-flex align-items-center gap-2 py-2 px-3 rounded-pill border border-white-10 mb-3">
+        <a routerLink="/الرئيسية" class="text-white-70 hover-white">
+          <i class="fa fa-home"></i>
+        </a>
+        <i class="fa fa-chevron-left text-white-30 small"></i>
+        <a routerLink="/المدونة" class="text-white-70 hover-white">المدونة</a>
+        <i class="fa fa-chevron-left text-white-30 small"></i>
+        <span class="text-orange fw-medium truncate">{{ post.category }}</span>
+      </nav>
+      <div class="post-meta d-flex flex-wrap align-items-center gap-3 mb-3">
+        <a [routerLink]="['/المدونة']" [queryParams]="{ category: post.category }"
+          class="btn btn-orange fw-bold px-4 py-2 rounded-pill">
+          {{ post.category }}
+        </a>
+        <div class="text-white-70 small d-flex flex-wrap gap-3">
+          <span class="d-flex align-items-center gap-1">
+            <i class="fa fa-calendar"></i> {{ post.date }}
+          </span>
+          @if (post.readTime) {
+          <span class="d-flex align-items-center gap-1">
+            <i class="fa-regular fa-clock"></i> {{ post.readTime }}
+          </span>
+          }
+        </div>
+      </div>
+      <h1 class="post-title text-white fw-bold mb-3">{{ post.title }}</h1>
+      <div class="author-box d-inline-flex align-items-center gap-3 p-3 bg-white-5 rounded-3 border border-white-10">
+        <img [src]="post.author.avatar" [alt]="post.author.name" class="rounded-circle" width="56" height="56" />
+        <div class="text-white">
+          <div class="fw-bold">{{ post.author.name }}</div>
+          <small class="text-white-60">{{ post.author.role }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container py-5">
+    <div class="row gy-4 gx-4">
+
+      <div class="col-lg-8 order-2 order-lg-1">
+
+        @if (post.excerpt) {
+        <blockquote class="blockquote-section p-4 mb-4 rounded-3 border border-orange-20">
+          <p class="mb-0 fst-italic text-white-80">"{{ post.excerpt }}"</p>
+        </blockquote>
+        }
+
+        <div class="article-content">
+          @for (block of contentBlocks; track block) {
+          @if (block.type === 'heading') {
+          <h2 [attr.id]="block.id" class="article-heading d-flex align-items-center gap-3 mb-3">
+            <span class="icon-box-sm d-flex align-items-center justify-content-center"><i
+                class="fa fa-camera text-orange"></i></span>
+            {{ block.text }}
+          </h2>
+          }
+          @if (block.type === 'paragraph') {
+          <p class="article-paragraph text-white-80 mb-3">{{ block.text }}</p>
+          }
+          }
+        </div>
+
+        @if (post.tags && post.tags.length > 0) {
+        <div class="tags-section mt-5 p-4 rounded-3 border border-dark">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="icon-box-sm d-flex align-items-center justify-content-center"><i
+                class="fa fa-tags text-orange"></i></span>
+            <h3 class="h5 text-white mb-0">الوسوم</h3>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            @for (tag of post.tags; track tag) {
+            <span class="tag-chip px-3 py-2 rounded-pill text-sm text-white-60 border border-dark">#{{ tag }}</span>
+            }
+          </div>
+        </div>
+        }
+
+        <div class="share-section mt-4 p-4 rounded-3 border border-dark">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="icon-box-sm d-flex align-items-center justify-content-center"><i
+                class="fa fa-share-alt text-orange"></i></span>
+            <h3 class="h5 text-white mb-0">شارك المقال</h3>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="share-btn rounded-3 d-flex align-items-center justify-content-center" title="Twitter"><i
+                class="fa-brands fa-x-twitter"></i></button>
+            <button class="share-btn rounded-3 d-flex align-items-center justify-content-center" title="LinkedIn"><i
+                class="fa-brands fa-linkedin-in"></i></button>
+            <button class="share-btn rounded-3 d-flex align-items-center justify-content-center" title="WhatsApp"><i
+                class="fa-brands fa-whatsapp"></i></button>
+            <button class="share-btn rounded-3 d-flex align-items-center justify-content-center" title="Copy Link"><i
+                class="fa fa-link"></i></button>
+          </div>
+        </div>
+
+        <div class="author-section mt-4 p-4 rounded-3 border border-dark">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="icon-box-sm d-flex align-items-center justify-content-center"><i
+                class="fa fa-user text-orange"></i></span>
+            <h3 class="h5 text-white mb-0">كاتب المقال</h3>
+          </div>
+          <div class="d-flex align-items-center gap-4">
+            <img [src]="post.author.avatar" [alt]="post.author.name" class="rounded-3" width="96" height="96" />
+            <div>
+              <h4 class="h5 text-white mb-1">{{ post.author.name }}</h4>
+              <small class="text-white-60 d-block mb-2">{{ post.author.role }}</small>
+              <p class="text-white-80 small mb-0">مصور محترف شغوف بمشاركة المعرفة والخبرات في عالم التصوير الفوتوغرافي.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="col-lg-4 order-1 order-lg-2">
+        <div class="sticky-aside">
+
+          @if (sections.length > 0) {
+          <div class="toc-section p-4 rounded-3 border border-dark mb-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <span class="icon-box-sm d-flex align-items-center justify-content-center"><i
+                  class="fa fa-list text-orange"></i></span>
+              <h3 class="h5 text-white mb-0">محتويات المقال</h3>
+            </div>
+            <nav class="nav flex-column">
+              @for (sec of sections; track sec.id) {
+
+              <a [href]="'#' + sec.id" class="toc-link nav-link py-2 text-white-60">{{ $index + 1 }}. {{ sec.title
+                }}</a>
+              }
+            </nav>
+          </div>
+          }
+
+          <div class="stats-section p-4 rounded-3 border border-dark mb-4">
+            <div class="row g-3">
+              <div class="col-6 text-center">
+                <div class="icon-box-sm mb-2 d-inline-flex align-items-center justify-content-center">
+                  <i class="fa-regular fa-clock text-orange"></i>
+                </div>
+                <div class="text-white fw-bold small">{{ post.readTime }}</div>
+                <div class="text-white-60 small">وقت القراءة</div>
+              </div>
+              <div class="col-6 text-center">
+                <div class="icon-box-sm mb-2 d-inline-flex align-items-center justify-content-center"><i
+                    class="fa fa-calendar text-orange"></i></div>
+                <div class="text-white fw-bold small">{{ post.date }}</div>
+                <div class="text-white-60 small">تاريخ النشر</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-section p-4 rounded-3 border border-dark mb-4 bg-gradient">
+            <div class="text-center">
+              <div class="icon-box-lg mx-auto mb-3"><i class="fa fa-envelope text-orange"></i></div>
+              <h4 class="h5 text-white fw-bold mb-1">لا تفوّت جديدنا</h4>
+              <p class="text-white-80 small mb-3">اشترك للحصول على أحدث المقالات</p>
+              <a routerLink="/المدونة" class="btn btn-primary w-100">تصفح المزيد</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  @if (recommended.length > 0) {
+  <div class="container py-5 border-top border-dark">
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-4">
+      <div class="d-flex align-items-center gap-3 mb-3 mb-md-0">
+        <div class="icon-box-lg"><i class="fa fa-images text-orange"></i></div>
+        <div>
+          <h2 class="h5 text-white fw-bold mb-1">مقالات قد تعجبك</h2>
+          <small class="text-white-60">استكشف المزيد من المحتوى المميز</small>
+        </div>
+      </div>
+      <a routerLink="/المدونة" class="d-none d-md-flex align-items-center gap-2 text-orange small fw-semibold">
+        عرض الكل <i class="fa fa-arrow-left"></i>
+      </a>
+    </div>
+    <div class="row g-4">
+      @for (rec of recommended; track rec.slug) {
+      <div class="col-md-4">
+        <a [routerLink]="['/المدونة', rec.slug]" class="rec-card d-block text-decoration-none">
+          <div class="rec-image position-relative overflow-hidden rounded-3">
+            <img [src]="rec.image" [alt]="rec.title" class="w-100 h-100 object-fit-cover" />
+            <span class="badge bg-orange position-absolute top-0 end-0 m-2 text-white small fw-bold">{{ rec.category
+              }}</span>
+          </div>
+          <div class="p-3">
+            <h3 class="h6 fw-bold text-white mb-2 line-clamp-2">{{ rec.title }}</h3>
+            <div class="d-flex justify-content-between align-items-center text-white-60 small">
+              <span class="d-flex align-items-center gap-2">
+                <img [src]="rec.author.avatar" [alt]="rec.author.name" class="rounded-circle" width="24" height="24" />
+                {{ rec.author.name }}
+              </span>
+              <span>{{ rec.readTime }}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</article>
+}

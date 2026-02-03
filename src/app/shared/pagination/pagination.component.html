@@ -1,0 +1,24 @@
+@if (totalPages > 1) {
+<nav aria-label="Page navigation" class="pagination-wrapper">
+  <ul class="pagination d-flex justify-content-center align-items-center gap-1 mb-0">
+    <!-- Previous arrow -->
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link nav-arrow" (click)="prev()" [disabled]="currentPage === 1">
+        <i class="fa fa-angle-right rotate-180"></i>
+      </button>
+    </li>
+
+    @for (page of pages; track page) {
+    <li class="page-item" [class.active]="page === currentPage">
+      <button class="page-link nav-page" (click)="changePage(page)">{{ page }}</button>
+    </li>
+    }
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link nav-arrow" (click)="next()" [disabled]="currentPage === totalPages">
+        <i class="fa fa-angle-left"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+}

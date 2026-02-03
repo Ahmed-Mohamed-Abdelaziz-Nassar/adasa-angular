@@ -1,0 +1,36 @@
+@if (viewMode === 'grid') {
+  <div class="col">
+    <div class="card h-100 position-relative overflow-hidden">
+      <img [src]="post.image" [alt]="post.title" class="card-img-top" />
+      <span class="badge-category">{{ post.category }}</span>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title text-truncate">{{ post.title }}</h5>
+        <p class="card-text small text-muted flex-grow-1">{{ post.excerpt }}</p>
+        <div class="d-flex align-items-center mt-3">
+          <img [src]="post.author.avatar" class="rounded-circle me-2" width="32" height="32" alt="{{ post.author.name }}" />
+          <div class="small">
+            <div>{{ post.author.name }}</div>
+            <div class="text-muted">{{ post.date }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@if (viewMode === 'list') {
+  <div class="post-list-item d-flex mb-4">
+    <img [src]="post.image" [alt]="post.title" class="me-3 rounded" style="width: 200px; height: 120px; object-fit: cover;" />
+    <div class="flex-grow-1">
+      <span class="badge-category mb-2 d-inline-block">{{ post.category }}</span>
+      <h5 class="mb-2">{{ post.title }}</h5>
+      <p class="small text-muted mb-2">{{ post.excerpt }}</p>
+      <div class="d-flex align-items-center">
+        <img [src]="post.author.avatar" class="rounded-circle me-2" width="28" height="28" alt="{{ post.author.name }}" />
+        <div class="small">
+          <div>{{ post.author.name }}</div>
+          <div class="text-muted">{{ post.date }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

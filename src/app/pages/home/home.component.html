@@ -1,0 +1,230 @@
+<section class="hero-section position-relative overflow-hidden text-center">
+  <div class="hero-grid-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+  <div class="hero-blob blob1 position-absolute"></div>
+  <div class="hero-blob blob2 position-absolute"></div>
+  <div class="hero-blob blob3 position-absolute"></div>
+
+  <div class="container d-flex flex-column align-items-center justify-content-center py-5" style="min-height: 90vh;">
+    <div class="d-flex align-items-center gap-2 mb-3 animate-fade-in">
+      <span class="ping-dot position-relative d-inline-block"></span>
+      <span class="small text-muted">مرحباً بك في عدسة</span>
+    </div>
+
+    <h1 class="display-4 display-md-2 fw-bold text-white mb-4 leading-tight">
+      اكتشف <span class="gradient-text">فن</span><br />التصوير الفوتوغرافي
+    </h1>
+    <p class="lead text-muted mb-4">انغمس في أسرار المحترفين ونصائح عملية لتطوير مهاراتك في التصوير.</p>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-4">
+      <a routerLink="/المدونة" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2">
+        <span>استكشف المقالات</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+      <a routerLink="/من-نحن" class="btn btn-outline-light d-flex align-items-center gap-2 px-4 py-2">
+        <i class="fa fa-info-circle"></i>
+        <span>اعرف المزيد</span>
+      </a>
+    </div>
+
+    <div class="row justify-content-center gy-3 w-100 stats-row">
+      @for (stat of stats; track stat.label) {
+      <div class="col-6 col-sm-3">
+        <div class="glass-card text-center p-3 h-100">
+          <i class="fa {{ stat.icon }} fa-2x text-orange mb-2"></i>
+          <h3 class="h4 fw-bold gradient-text mb-1">{{ stat.value }}</h3>
+          <p class="text-muted small mb-0">{{ stat.label }}</p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="selected-section py-5 position-relative overflow-hidden">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-4 gap-3">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="ping-dot position-relative d-inline-block"></span>
+          <span class="small text-muted">مميز</span>
+        </div>
+        <h2 class="h3 fw-bold text-white mb-1">مقالات مختارة</h2>
+        <p class="text-muted small mb-0">محتوى منتقى لبدء رحلة تعلمك</p>
+      </div>
+      <a routerLink="/المدونة" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2">
+        <span>عرض الكل</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </div>
+
+    <div class="selected-list">
+      @for (post of featuredPosts; track post.id) {
+      <article class="selected-card mb-4">
+        <a [routerLink]="['/المدونة', post.slug]" class="text-decoration-none">
+          <div class="row g-0 flex-column flex-md-row">
+            <div class="col-md-6 order-md-2">
+              <div class="selected-image position-relative h-100">
+                <img [src]="post.image" [alt]="post.title" class="img-fluid w-100 h-100 object-fit-cover" />
+                <span class="badge badge-featured position-absolute top-0 end-0 m-2 d-flex align-items-center gap-1">
+                  <i class="fa fa-star"></i><span>مميز</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex flex-column p-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-orange bg-opacity-10 text-orange fw-semibold rounded-pill px-3 py-1 me-2">{{
+                  post.category }}</span>
+                @if (post.readTime) {
+                <span class="text-muted small d-flex align-items-center gap-1">
+                  <i class="fa fa-clock"></i><span>{{ post.readTime }}</span>
+                </span>
+                }
+              </div>
+              <h3 class="h5 fw-bold text-white mb-2">{{ post.title }}</h3>
+              <p class="text-muted small mb-3 line-clamp-3">{{ post.excerpt }}</p>
+              <div class="d-flex align-items-center justify-content-between mt-auto">
+                <div class="d-flex align-items-center gap-2">
+                  <img [src]="post.author.avatar" [alt]="post.author.name" class="rounded-circle object-fit-cover"
+                    width="48" height="48" />
+                  <div>
+                    <div class="text-white small fw-semibold">{{ post.author.name }}</div>
+                    <div class="text-muted small">{{ post.date }}</div>
+                  </div>
+                </div>
+                <span class="text-orange small fw-semibold d-flex align-items-center gap-1">
+                  اقرأ المقال<i class="fa fa-angle-left"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="categories-section py-5 bg-dark border-top border-bottom border-secondary">
+  <div class="container">
+    <div class="text-center mb-4">
+      <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+        <span class="ping-dot position-relative d-inline-block"></span>
+        <span class="small text-muted">التصنيفات</span>
+      </div>
+      <h2 class="h3 fw-bold text-white mb-1">استكشف حسب الموضوع</h2>
+      <p class="text-muted small mb-0">اعثر على محتوى مصمم حسب اهتماماتك</p>
+    </div>
+    <div class="row row-cols-2 row-cols-md-4 g-3">
+      @for (cat of categoriesList; track cat.name) {
+      <div class="col">
+        <a [routerLink]="['/المدونة']" [queryParams]="{ category: cat.name }"
+          class="category-card d-block p-4 position-relative text-decoration-none">
+          <div
+            class="icon-box mb-3 rounded-3 d-flex align-items-center justify-content-center border border-orange-subtle">
+            <i class="fa {{ cat.icon }} text-orange fa-lg"></i>
+          </div>
+          <h3 class="h6 fw-bold text-white mb-1">{{ cat.name }}</h3>
+          <p class="text-muted small mb-0">{{ cat.count }} مقالة</p>
+          <div
+            class="arrow-icon position-absolute top-0 start-0 mt-2 ms-2 d-flex align-items-center justify-content-center opacity-0">
+            <i class="fa fa-angle-left text-white"></i>
+          </div>
+        </a>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="latest-section py-5">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-4 gap-3">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="ping-dot position-relative d-inline-block"></span>
+          <span class="small text-muted">الأحدث</span>
+        </div>
+        <h2 class="h3 fw-bold text-white mb-1">أحدث المقالات</h2>
+        <p class="text-muted small mb-0">محتوى جديد طازج من المطبعة</p>
+      </div>
+      <a routerLink="/المدونة" class="text-orange fw-semibold small d-flex align-items-center gap-1">
+        <span>عرض جميع المقالات</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      @for (post of latestPosts; track post.id) {
+      <div class="col">
+        <article class="latest-card h-100">
+          <a [routerLink]="['/المدونة', post.slug]" class="text-decoration-none d-flex flex-column h-100">
+            <div class="latest-image position-relative overflow-hidden">
+              <img [src]="post.image" [alt]="post.title" class="img-fluid w-100 h-100 object-fit-cover" />
+              <span class="badge bg-dark bg-opacity-75 text-white small position-absolute top-0 end-0 m-2">{{
+                post.category }}</span>
+            </div>
+            <div class="p-3 d-flex flex-column flex-grow-1 bg-dark-subtle">
+              <div class="text-muted small d-flex align-items-center gap-2 mb-2">
+                @if (post.readTime) {
+                <span class="d-flex align-items-center gap-1"><i class="fa fa-clock"></i><span>{{ post.readTime
+                    }}</span></span>
+                <span class="dot bg-muted"></span>
+                }
+                <span>{{ post.date }}</span>
+              </div>
+              <h3 class="h6 fw-bold text-white mb-2">{{ post.title }}</h3>
+              <p class="text-muted small mb-3 line-clamp-2">{{ post.excerpt }}</p>
+              <div
+                class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top border-secondary-subtle">
+                <div class="d-flex align-items-center gap-2">
+                  <img [src]="post.author.avatar" [alt]="post.author.name" class="rounded-circle" width="40"
+                    height="40" />
+                  <div>
+                    <div class="text-white small fw-semibold">{{ post.author.name }}</div>
+                    <div class="text-muted small">{{ post.author.role }}</div>
+                  </div>
+                </div>
+                <div
+                  class="arrow-box d-flex align-items-center justify-content-center rounded-circle border border-orange-subtle">
+                  <i class="fa fa-angle-left text-orange"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-section py-5 position-relative overflow-hidden">
+  <div class="container">
+    <div class="newsletter-card mx-auto text-center p-4 p-md-5 position-relative overflow-hidden">
+      <div class="icon-box-large rounded-2 d-flex align-items-center justify-content-center mx-auto mb-4">
+        <i class="fa fa-envelope fa-2x text-white"></i>
+      </div>
+      <h2 class="h4 h-md-3 fw-bold text-white mb-3">اشترك في <span class="gradient-text">نشرتنا الإخبارية</span></h2>
+      <p class="text-muted mb-4">احصل على نصائح التصوير الحصرية ودروس جديدة مباشرة في بريدك الإلكتروني</p>
+      <form class="d-flex flex-column flex-sm-row gap-2 gap-sm-3 justify-content-center mb-4">
+        <input type="email" [(ngModel)]="newsletterEmail" name="newsletterEmail" placeholder="أدخل بريدك الإلكتروني"
+          class="form-control py-3 px-3 bg-dark border border-secondary text-white rounded-3" />
+        <button type="button" routerLink="/الرئيسية" class="btn btn-primary py-3 px-4">اشترك الآن</button>
+      </form>
+      <div class="d-flex flex-wrap justify-content-center gap-2 text-muted small">
+        <div class="d-flex align-items-center gap-1">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face"
+            class="rounded-circle border border-dark" width="32" height="32" />
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=crop&crop=face"
+            class="rounded-circle border border-dark" width="32" height="32" />
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face"
+            class="rounded-circle border border-dark" width="32" height="32" />
+        </div>
+        <span>انضم لـ <span class="text-white fw-bold">+10,000</span> مصور</span>
+        <span class="mx-1">•</span>
+        <span>بدون إزعاج</span>
+        <span class="mx-1">•</span>
+        <span>إلغاء الاشتراك في أي وقت</span>
+      </div>
+    </div>
+  </div>
+</section>

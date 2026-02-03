@@ -1,0 +1,44 @@
+<nav class="main-navbar fixed-top bg-dark border-bottom border-secondary py-2">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a routerLink="/الرئيسية" class="navbar-brand d-flex align-items-center gap-2 text-decoration-none">
+      <div class="logo-box d-flex align-items-center justify-content-center rounded-3"
+        style="width: 2.75rem; height: 2.75rem; background: transparent; box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);">
+        <span class="text-white fw-bold fs-5">
+          <img src="https://adasa-psi.vercel.app/assets/logo-GdqARQRt.png" alt="" style="width: 40px;">
+        </span>
+      </div>
+      <div class="d-flex flex-column">
+        <span class="fw-bold text-white">عدسة</span>
+        <small class="text-muted d-none d-sm-block">عالم التصوير الفوتوغرافي</small>
+      </div>
+    </a>
+    <div class="d-none d-md-flex align-items-center">
+      <div class="nav-pill d-flex align-items-center bg-secondary-subtle border border-secondary rounded-pill p-1">
+        <a routerLink="/الرئيسية" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-pill-link px-4 py-2 rounded-pill">الرئيسية</a>
+        <a routerLink="/المدونة" routerLinkActive="active" class="nav-pill-link px-4 py-2 rounded-pill">المدونة</a>
+        <a routerLink="/من-نحن" routerLinkActive="active" class="nav-pill-link px-4 py-2 rounded-pill">من نحن</a>
+      </div>
+    </div>
+    <div class="d-none d-md-flex align-items-center gap-2">
+      <button type="button" class="icon-btn border-0 p-2 text-muted"><i class="fa fa-search"></i></button>
+      <a routerLink="/المدونة" class="btn btn-primary btn-sm">ابدأ القراءة</a>
+    </div>
+    <button type="button" class="icon-btn d-md-none border-0 p-2 text-muted" (click)="toggleMobileMenu()">
+      <i class="fa fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-menu d-md-none overflow-hidden" [style.maxHeight]="mobileOpen ? '500px' : '0'"
+    style="transition: max-height 0.3s ease;">
+    <div class="bg-secondary-subtle border border-secondary rounded-3 p-3 mt-2 mx-3">
+      <a routerLink="/الرئيسية" (click)="toggleMobileMenu()" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="d-block px-4 py-3 rounded-3 mb-2 text-muted nav-mobile-link">الرئيسية</a>
+      <a routerLink="/المدونة" (click)="toggleMobileMenu()" routerLinkActive="active"
+        class="d-block px-4 py-3 rounded-3 mb-2 text-muted nav-mobile-link">المدونة</a>
+      <a routerLink="/من-نحن" (click)="toggleMobileMenu()" routerLinkActive="active"
+        class="d-block px-4 py-3 rounded-3 mb-2 text-muted nav-mobile-link">من نحن</a>
+      <a routerLink="/المدونة" (click)="toggleMobileMenu()" class="btn btn-primary w-100">ابدأ القراءة</a>
+    </div>
+  </div>
+</nav>

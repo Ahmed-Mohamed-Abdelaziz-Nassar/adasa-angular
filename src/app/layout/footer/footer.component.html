@@ -1,0 +1,90 @@
+<footer class="footer-section position-relative border-top border-secondary overflow-hidden pt-5">
+  <div class="footer-blob1 position-absolute"></div>
+  <div class="footer-blob2 position-absolute"></div>
+
+  <div class="container position-relative">
+    <div class="row g-4 mb-4">
+      <div class="col-12 col-md-6 col-lg-3">
+        <a routerLink="/الرئيسية" class="d-flex align-items-center gap-2 mb-3 text-decoration-none">
+          <div class="logo-box d-flex align-items-center justify-content-center rounded-3"
+            style="width: 2.75rem; height: 2.75rem; background: linear-gradient(135deg, var(--orange), #ffb74d); box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);">
+            <span class="text-white fw-bold fs-5">ع</span>
+          </div>
+          <span class="fw-bold text-white fs-5">عدسة</span>
+        </a>
+        <p class="small text-neutral-500 mb-4">مدونة متخصصة في فن التصوير الفوتوغرافي، نشارك معكم أسرار المحترفين ونصائح
+          عملية لتطوير مهاراتكم.</p>
+        <div class="d-flex gap-2">
+          <a href="https://twitter.com/adasah" target="_blank" rel="noopener noreferrer"
+            class="social-icon d-flex align-items-center justify-content-center" aria-label="twitter"><i
+              class="fa-brands fa-twitter"></i></a>
+          <a href="https://github.com/adasah" target="_blank" rel="noopener noreferrer"
+            class="social-icon d-flex align-items-center justify-content-center" aria-label="github"><i
+              class="fa-brands fa-github"></i></a>
+          <a href="https://linkedin.com/company/adasah" target="_blank" rel="noopener noreferrer"
+            class="social-icon d-flex align-items-center justify-content-center" aria-label="linkedin"><i
+              class="fa-brands fa-linkedin"></i></a>
+          <a href="https://youtube.com/@adasah" target="_blank" rel="noopener noreferrer"
+            class="social-icon d-flex align-items-center justify-content-center" aria-label="youtube"><i
+              class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5 class="text-white fw-semibold mb-3 d-flex align-items-center gap-2"><span class="flex-grow-1"
+            style="height: 2px; background: linear-gradient(to right, var(--orange), #ffb74d);"></span><span>استكشف</span>
+        </h5>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a routerLink="/الرئيسية"
+              class="footer-link d-flex align-items-center gap-2 text-decoration-none"><span
+                class="footer-arrow-icon"><i class="fa fa-angle-left"></i></span>الرئيسية</a></li>
+          <li class="mb-3"><a routerLink="/المدونة"
+              class="footer-link d-flex align-items-center gap-2 text-decoration-none"><span
+                class="footer-arrow-icon"><i class="fa fa-angle-left"></i></span>المدونة</a></li>
+          <li class="mb-3"><a routerLink="/من-نحن"
+              class="footer-link d-flex align-items-center gap-2 text-decoration-none"><span
+                class="footer-arrow-icon"><i class="fa fa-angle-left"></i></span>من نحن</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <h5 class="text-white fw-semibold mb-3 d-flex align-items-center gap-2">
+          <span class="flex-grow-1"
+            style="height: 2px; background: linear-gradient(to right, var(--orange), #ffb74d);"></span>
+          <span>التصنيفات</span>
+        </h5>
+        <ul class="list-unstyled">
+          @for (cat of categories; track cat.name) {
+          <li class="mb-3">
+            <a [routerLink]="['/المدونة']" [queryParams]="{ category: cat.name }"
+              class="footer-link d-flex align-items-center gap-2 text-decoration-none">
+              <span class="footer-arrow-icon"><i class="fa fa-angle-left"></i></span>{{ cat.name }}
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+      <div class="col-12 col-md-6 col-lg-3">
+        <h5 class="text-white fw-semibold mb-3 d-flex align-items-center gap-2"><span class="flex-grow-1"
+            style="height: 2px; background: linear-gradient(to right, var(--orange), #ffb74d);"></span><span>ابقى على
+            اطلاع</span></h5>
+        <p class="small text-neutral-500 mb-3">اشترك للحصول على أحدث المقالات والتحديثات.</p>
+        <form class="mb-3" (ngSubmit)="subscribe()">
+          <div class="mb-2">
+            <input type="email" [(ngModel)]="email" name="footerEmail" placeholder="أدخل بريدك الإلكتروني"
+              class="form-control bg-secondary text-white border border-secondary rounded-3 py-2 px-3" />
+          </div>
+          <button type="submit" class="btn btn-primary w-100 text-sm">اشترك</button>
+        </form>
+        <div *ngIf="subscribed" class="alert alert-success py-2 px-3 small">شكراً لاشتراكك!</div>
+      </div>
+    </div>
+    <div
+      class="border-top border-secondary pt-3 pb-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 small">
+      <p class="mb-0">© {{ currentYear }} عدسة. صنع بكل <i class="fa fa-heart text-orange"></i> جميع الحقوق
+        محفوظة.</p>
+      <div class="d-flex gap-3">
+        <a routerLink="/سياسة-الخصوصية" class="footer-link text-decoration-none">سياسة الخصوصية</a>
+        <a routerLink="/شروط-الخدمة" class="footer-link text-decoration-none">شروط الخدمة</a>
+      </div>
+    </div>
+  </div>
+</footer>

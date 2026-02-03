@@ -1,0 +1,62 @@
+/* Main navbar styling */
+
+
+.main-navbar {
+  background-color: var(--dark-bg);
+  backdrop-filter: blur(10px);
+  z-index: 1050;
+
+}
+
+.nav-pill {
+  background-color: var(--secondary-bg);
+  border-radius: 9999px;
+  border: 1px solid #262626;
+
+  overflow: hidden;
+}
+
+.nav-pill-link {
+  color: #888;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-pill-link.active,
+.nav-pill-link:hover {
+  background: linear-gradient(90deg, var(--orange), #ffb74d);
+  color: #000;
+}
+
+/* Action icon buttons */
+.icon-btn {
+  color: #888;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.icon-btn:hover {
+  color: var(--orange);
+  background-color: #161616;
+  border-color: #262626;
+}
+
+.nav-mobile-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-mobile-link.active,
+.nav-mobile-link:hover {
+  background-color: rgba(255, 127, 14, 0.1);
+  color: var(--orange);
+}
+
+.container {
+  padding: 10px 20px;
+}

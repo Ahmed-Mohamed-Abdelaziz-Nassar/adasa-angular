@@ -1,0 +1,53 @@
+/* Pagination styles matching the blog and home pages */
+.pagination {
+  margin: 0;
+  padding: 0;
+}
+.page-link {
+  border-radius: 0.75rem;
+  border: 1px solid #262626;
+  background-color: #161616;
+  color: rgba(255, 255, 255, 0.6);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.page-link.nav-page {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.page-item.active .nav-page {
+  background: linear-gradient(90deg, var(--orange), #ffd54f);
+  border-color: transparent;
+  color: #000;
+}
+.page-link.nav-page:hover:not(:disabled) {
+  border-color: rgba(255, 127, 14, 0.5);
+  color: #ccc;
+}
+.nav-arrow i {
+  font-size: 1rem;
+  transform: rotate(180deg);
+}
+.nav-arrow {
+  font-size: 1rem;
+}
+.page-item.disabled .page-link {
+  cursor: not-allowed;
+  color: #555;
+  border-color: #262626;
+  background-color: #0a0a0a;
+}
+.page-link.nav-arrow:hover:not(:disabled) {
+  border-color: rgba(255, 127, 14, 0.5);
+  color: var(--orange);
+}
+
+/* Utility class to rotate icons */
+.rotate-180 {
+  transform: rotate(180deg);
+}
